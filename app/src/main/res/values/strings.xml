@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppSistemaBibliotecario</string>
+    <string name="alunos">Alunos</string>
+    <string name="bibliotecarios">Bibliotecarios</string>
+    <string name="livros">Livros</string>
+    <string name="empr_stimos">Empréstimos</string>
+    <string name="devolu_es">Devoluções</string>
+    <string name="sair">Sair</string>
+    <string name="voltar">Voltar</string>
+    <string name="novo">Novo</string>
+</resources>
