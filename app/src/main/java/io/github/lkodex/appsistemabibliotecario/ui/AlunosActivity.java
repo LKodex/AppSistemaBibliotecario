@@ -32,8 +32,14 @@ public class AlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        if (aluno != null) binding.btnAlunosExcluir.setVisibility(View.GONE);
+        if (aluno == null) binding.btnAlunosExcluir.setVisibility(View.GONE);
+        else {
+            binding.edtTxtAlunosRGA.setText(aluno.rga);
+            binding.edtTxtAlunosNome.setText(aluno.nome);
+            binding.edtTxtAlunosEmail.setText(aluno.email);
+            binding.edtTxtAlunosTelefone.setText(aluno.telefone);
+            binding.edtTxtAlunosEndereco.setText(aluno.endereco);
+        }
     }
 
     public void btnVoltar(View view) { finish(); }
@@ -59,6 +65,31 @@ public class AlunosActivity extends AppCompatActivity {
     }
 
     public void btnSalvar(View view) {
+        if (binding.edtTxtAlunosRGA.getText().toString().isEmpty()) Toast.makeText(
+                getApplicationContext(),
+                "RGA não pode estar vazio",
+                Toast.LENGTH_SHORT
+        ).show();
 
+        String toastSuccessMessage = "Aluno atualizado com sucesso!";
+        Boolean novoAluno = aluno == null;
+        if (novoAluno) {
+            aluno = new Aluno();
+            toastSuccessMessage = "Aluno inserido com sucesso!";
+        }
+        aluno.rga = binding.edtTxtAlunosRGA.getText().toString();
+        aluno.nome = binding.edtTxtAlunosNome.getText().toString();
+        aluno.email = binding.edtTxtAlunosEmail.getText().toString();
+        aluno.telefone = binding.edtTxtAlunosTelefone.getText().toString();
+        aluno.endereco = binding.edtTxtAlunosEndereco.getText().toString();
+
+        if (novoAluno) facade.getDatabase().alunoDAO().insertAll(aluno);
+        else facade.getDatabase().alunoDAO().update(aluno);
+        Toast.makeText(
+                getApplicationContext(),
+                toastSuccessMessage,
+                Toast.LENGTH_SHORT
+        ).show();
+        finish();
     }
 }

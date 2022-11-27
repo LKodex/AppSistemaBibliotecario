@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public interface BibliotecarioDAO {
 
     @Query("SELECT COUNT(cpf) FROM bibliotecario")
     Integer count();
+
+    @Update
+    void update(Bibliotecario bibliotecario);
 
     @Insert
     void insertAll(Bibliotecario... bibliotecarios);

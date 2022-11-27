@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,6 +21,9 @@ public interface LivroDAO {
 
     @Query("SELECT * FROM livro WHERE uuid IN (:livroIds)")
     List<Livro> loadAllById(UUID[] livroIds);
+
+    @Update
+    void update(Livro livro);
 
     @Insert
     void insertAll(Livro... livros);

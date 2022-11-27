@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLoginEntrar.setOnClickListener(view -> {
             userLoggingIn = new Bibliotecario();
             userLoggingIn.cpf = binding.edtTextLoginCPF.getText().toString();
-            userLoggingIn.senha = binding.edtTextLoginSenha.getText().toString();
+            userLoggingIn.senhaString = binding.edtTextLoginSenha.getText().toString();
 
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
 

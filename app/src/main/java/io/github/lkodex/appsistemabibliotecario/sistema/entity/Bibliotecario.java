@@ -12,6 +12,8 @@ public class Bibliotecario {
     public String cpf;
     @NonNull
     public String senha;
+    @Ignore
+    public String senhaString;
     public String nome;
     public String endereco;
     public String telefone;

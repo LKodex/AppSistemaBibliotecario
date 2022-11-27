@@ -1,6 +1,7 @@
 package io.github.lkodex.appsistemabibliotecario.sistema;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import io.github.lkodex.appsistemabibliotecario.sistema.database.AppDatabase;
 import io.github.lkodex.appsistemabibliotecario.sistema.entity.Bibliotecario;
@@ -13,7 +14,7 @@ import io.github.lkodex.appsistemabibliotecario.sistema.util.SHA;
 public class Authentication {
     protected AppDatabase database;
     protected Bibliotecario user;
-    protected Boolean userAuthenticated;
+    protected Boolean userAuthenticated = false;
 
     public Authentication(AppDatabase database){
         this.database = database;
@@ -22,25 +23,37 @@ public class Authentication {
     public Authentication(AppDatabase database, Bibliotecario usuario) throws UserNotFoundException, InvalidAttributeValueException {
         this(database);
         this.user = usuario;
-        int registerCount = database.bibliotecarioDAO().count();
-        if (registerCount > 0) authenticateUser();
-        else register(user);
+        validateData(user);
+        authenticateUser();
     }
 
     public void register(Bibliotecario bibliotecario) throws InvalidAttributeValueException {
-        validateData(bibliotecario);
-        System.out.println(bibliotecario.senha);
-        BibliotecarioDAO dao = database.bibliotecarioDAO();
-        dao.insertAll(bibliotecario);
+        try {
+            bibliotecario.senha = SHA.hash(bibliotecario.senha);
+            BibliotecarioDAO dao = database.bibliotecarioDAO();
+            dao.insertAll(bibliotecario);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void authenticateUser() throws UserNotFoundException {
+    public void authenticateUser() throws UserNotFoundException, InvalidAttributeValueException {
+        /* Validar CPF e Senha
+         * Existe usuários cadastrados
+         *	C1, C2	Procurar usuário por CPF
+         *	C2	Retornar erro
+         *	C1	Comparar hash da senha e senha do BD
+         *	C3	Cadastrar usuário no Banco de Dados
+         * Atualizar variável autenticado
+         */
+        int registerCount = database.bibliotecarioDAO().count();
+        if (registerCount <= 0) register(user);
         Bibliotecario userDB;
-        try { userDB = database.bibliotecarioDAO().loadAllByIds(new String[]{ user.cpf }).get(0);}
+        try {
+            userDB = database.bibliotecarioDAO().loadAllByIds(new String[]{user.cpf}).get(0);
+            userAuthenticated = SHA.compareHash(user.senha, userDB.senha);
+        }
         catch (Exception e) { throw new UserNotFoundException(); }
-        System.out.println(user.senha);
-        System.out.println(userDB.senha);
-        userAuthenticated = SHA.compareHash(user.senha, userDB.senha);
     }
 
     protected void validateData(Bibliotecario bibliotecario) throws InvalidAttributeValueException {
@@ -48,24 +61,29 @@ public class Authentication {
 
         char[] originalCpf = bibliotecario.cpf.toCharArray();
         char[] validatedCpf = bibliotecario.cpf.toCharArray();
-        int validatingSum = 0;
 
         if(originalCpf.length != 11){ throw new InvalidAttributeValueException("CPF length is not equal 11"); }
 
+        int validatingSum = 0;
         for (int i = 10; i >= 2; i--) { validatingSum += (originalCpf[10 - i] - 48) * i; }
         validatedCpf[9] = (char)(validatingSum * 10 % 11 + 48);
-        validatingSum = 0;
 
+        validatingSum = 0;
         for (int i = 11; i >= 2; i--) { validatingSum += (validatedCpf[11 - i] - 48) * i; }
         validatedCpf[10] = (char)(validatingSum * 10 % 11 + 48);
 
-        System.out.println(originalCpf);
-        System.out.println(validatedCpf);
         if (originalCpf.toString().equals(validatedCpf.toString())) throw new InvalidAttributeValueException("CPF is not valid");
-
-        if (bibliotecario.senha.isEmpty()) throw new InvalidAttributeValueException("Password cannot be empty");
+        if (bibliotecario.senhaString.isEmpty()) throw new InvalidAttributeValueException("Password cannot be empty");
+        try {
+            bibliotecario.senha = SHA.hash(bibliotecario.senhaString);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Boolean isAuthenticated() { return userAuthenticated; }
+    public Boolean isAuthenticated() throws UserNotFoundException, InvalidAttributeValueException {
+        authenticateUser();
+        return userAuthenticated;
+    }
     public Bibliotecario getUser() { return user; }
 }

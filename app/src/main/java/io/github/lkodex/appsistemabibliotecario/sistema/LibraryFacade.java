@@ -5,10 +5,12 @@ import android.content.Context;
 import androidx.room.Room;
 
 import java.util.List;
+import java.util.UUID;
 
 import io.github.lkodex.appsistemabibliotecario.sistema.database.AppDatabase;
 import io.github.lkodex.appsistemabibliotecario.sistema.entity.Aluno;
 import io.github.lkodex.appsistemabibliotecario.sistema.entity.Bibliotecario;
+import io.github.lkodex.appsistemabibliotecario.sistema.entity.Devolucao;
 import io.github.lkodex.appsistemabibliotecario.sistema.entity.Emprestimo;
 import io.github.lkodex.appsistemabibliotecario.sistema.entity.Livro;
 import io.github.lkodex.appsistemabibliotecario.sistema.exception.AlunoBlockedForEmprestimo;
@@ -46,11 +48,16 @@ public class LibraryFacade {
     }
 
     public Boolean bibliotecarioEstaAutenticado() {
-        return authentication.isAuthenticated();
+        try { return authentication.isAuthenticated(); }
+        catch (Exception e) { return false; }
     }
 
     public Bibliotecario getBibliotecario() {
         return authentication.getUser();
+    }
+
+    public Bibliotecario getBibliotecario(String cpf){
+        return database.bibliotecarioDAO().loadAllByIds(new String[]{ cpf }).get(0);
     }
 
     public void registrarNovoLivro(Livro... livros) throws InvalidAttributeValueException {
@@ -86,10 +93,18 @@ public class LibraryFacade {
     }
 
     public void cadastrarAluno(Aluno... alunos) throws UnauthenticatedUserException {
-        if (authentication.isAuthenticated())
-        database.alunoDAO().insertAll(alunos);
-        else throw new UnauthenticatedUserException();
+        try {
+            if (authentication.isAuthenticated())
+            database.alunoDAO().insertAll(alunos);
+            else throw new UnauthenticatedUserException();
+        } catch (Exception e) {
+            throw new UnauthenticatedUserException();
+        }
     }
 
     public AppDatabase getDatabase(){ return database; }
+
+    public Devolucao getDevolucao(UUID devolucaoUUID) {
+        return database.devolucaoDAO().loadAllByIds(new UUID[] { devolucaoUUID }).get(0);
+    }
 }
