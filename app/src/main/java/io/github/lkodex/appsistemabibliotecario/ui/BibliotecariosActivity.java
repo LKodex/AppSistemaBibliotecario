@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import java.security.NoSuchAlgorithmException;
+
 import io.github.lkodex.appsistemabibliotecario.databinding.ActivityBibliotecariosBinding;
 import io.github.lkodex.appsistemabibliotecario.sistema.LibraryFacade;
 import io.github.lkodex.appsistemabibliotecario.sistema.entity.Bibliotecario;
+import io.github.lkodex.appsistemabibliotecario.sistema.util.SHA;
 
 public class BibliotecariosActivity extends AppCompatActivity {
     private static LibraryFacade facade;
@@ -22,6 +25,8 @@ public class BibliotecariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityBibliotecariosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        facade = BibliotecariosListagemActivity.facade;
 
         String bibliotecarioCpf = getIntent().getStringExtra("SELECTED_CPF");
         if (bibliotecarioCpf != null) bibliotecario = facade.getBibliotecario(bibliotecarioCpf);
@@ -35,7 +40,7 @@ public class BibliotecariosActivity extends AppCompatActivity {
             binding.edtTxtBibliotecariosCPF.setText(bibliotecario.cpf);
             binding.edtTxtBibliotecariosNome.setText(bibliotecario.nome);
             binding.edtTxtBibliotecariosEmail.setText(bibliotecario.email);
-            binding.edtTxtBibliotecariosSenha.setText(bibliotecario.senha);
+            // binding.edtTxtBibliotecariosSenha.setText(bibliotecario.senha);
             binding.edtTxtBibliotecariosEndereco.setText(bibliotecario.endereco);
             binding.edtTxtBibliotecariosTelefone.setText(bibliotecario.telefone);
         }
@@ -75,7 +80,9 @@ public class BibliotecariosActivity extends AppCompatActivity {
         bibliotecario.cpf = binding.edtTxtBibliotecariosCPF.getText().toString();
         bibliotecario.nome = binding.edtTxtBibliotecariosNome.getText().toString();
         bibliotecario.email = binding.edtTxtBibliotecariosEmail.getText().toString();
-        bibliotecario.senha = binding.edtTxtBibliotecariosSenha.getText().toString();
+        bibliotecario.senhaString = binding.edtTxtBibliotecariosSenha.getText().toString();
+        try { bibliotecario.senha = SHA.hash(bibliotecario.senhaString); }
+        catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
         bibliotecario.endereco = binding.edtTxtBibliotecariosEndereco.getText().toString();
         bibliotecario.telefone = binding.edtTxtBibliotecariosTelefone.getText().toString();
         if (novoBibliotecario) facade.getDatabase().bibliotecarioDAO().insertAll(bibliotecario);
