@@ -2,6 +2,7 @@ package io.github.lkodex.appsistemabibliotecario.sistema.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -16,4 +17,9 @@ public class Bibliotecario {
     public String telefone;
     public String email;
     public byte[] foto;
+
+    @Ignore
+    public String toString(){
+        return String.format("%s\n%s", cpf, nome);
+    }
 }

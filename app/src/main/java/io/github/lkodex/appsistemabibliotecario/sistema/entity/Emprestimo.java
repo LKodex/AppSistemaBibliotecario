@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.sql.Date;
@@ -48,4 +49,9 @@ public class Emprestimo {
     @ColumnInfo(name = "data_devolucao_prevista")
     public Date     dataDevolucaoPrevista;
     public byte[]   foto;
+
+    @Ignore
+    public String toString(){
+        return String.format("%s\t%s\t%s\t%s", livro, aluno, dataEmprestimo, bibliotecario);
+    }
 }

@@ -8,4 +8,20 @@
     <string name="sair">Sair</string>
     <string name="voltar">Voltar</string>
     <string name="novo">Novo</string>
+    <string name="excluir">Excluir</string>
+    <string name="salvar">Salvar</string>
+    <string name="registro_geral_academico">RGA</string>
+    <string name="nome">Nome</string>
+    <string name="endereco">Endereco</string>
+    <string name="telefone">Telefone</string>
+    <string name="email">Email</string>
+    <string name="foto">Foto</string>
+    <string name="cpf">CPF</string>
+    <string name="senha">Senha</string>
+    <string name="uuid">UUID</string>
+    <string name="data_de_devolucao">Data de Devolução</string>
+    <string name="cpf_bibliotecario">CPF do Bibliotecário</string>
+    <string name="titulo">Titulo</string>
+    <string name="editora">Editora</string>
+    <string name="ano_de_publicacao">Ano de Publicação</string>
 </resources>

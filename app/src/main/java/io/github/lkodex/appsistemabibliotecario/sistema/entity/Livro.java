@@ -3,9 +3,9 @@ package io.github.lkodex.appsistemabibliotecario.sistema.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
 import java.util.UUID;
 
 @Entity
@@ -16,5 +16,10 @@ public class Livro {
     public String titulo;
     public String editora;
     @ColumnInfo(name = "ano_publicacao")
-    public Date   anoPublicacao;
+    public Integer anoPublicacao;
+
+    @Ignore
+    public String toString(){
+        return String.format("%s\t%s\t%d", titulo, editora, anoPublicacao);
+    }
 }

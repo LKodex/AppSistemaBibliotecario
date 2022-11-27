@@ -3,6 +3,7 @@ package io.github.lkodex.appsistemabibliotecario.sistema.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import java.sql.Date;
 
@@ -18,4 +19,9 @@ public class Aluno {
     @ColumnInfo(name = "emprestimo_bloqueado_ate")
     public Date     emprestimoBloqueadoAte;
     public byte[]   foto;
+
+    @Ignore
+    public String toString(){
+        return String.format("%s\t%s", rga, nome);
+    }
 }

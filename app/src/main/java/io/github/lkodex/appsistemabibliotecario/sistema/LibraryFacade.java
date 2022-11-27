@@ -90,4 +90,6 @@ public class LibraryFacade {
         database.alunoDAO().insertAll(alunos);
         else throw new UnauthenticatedUserException();
     }
+
+    public AppDatabase getDatabase(){ return database; }
 }
