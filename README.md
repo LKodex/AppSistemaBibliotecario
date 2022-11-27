@@ -76,8 +76,8 @@ O sistema deve permitir funcionalidades CRUD para bibliotecários, alunos, livro
 
 | Tabela | Atributos |
 | - | - |
-| bibliotecario | cpf\<\<PK\>\>, nome, endereco, telefone, email, foto |
-| aluno | rga\<\<PK\>\>, nome, endereco, telefone, email, foto |
+| bibliotecario | cpf\<\<PK\>\>, senha, nome, endereco, telefone, email, foto |
+| aluno | rga\<\<PK\>\>, nome, endereco, telefone, email, emprestimo_bloqueado_ate, foto |
 | livro | uuid\<\<PK\>\>, titulo, editora, ano_publicacao |
 | emprestimo | uuid\<\<PK\>\>, bibliotecario\<\<FK\>\>, aluno\<\<FK\>\>, livro\<\<FK\>\>, data_emprestimo, data_devolucao_prevista, foto |
 | devolucao | emprestimo_uuid\<\<PK\>\>\<\<FK\>\>, bibliotecario\<\<FK\>\>, data_devolucao, foto |
