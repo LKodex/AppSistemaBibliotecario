@@ -4,20 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LivrosActivity">
+    tools:context=".ui.EmprestimosActivity">
+
+    <TextView
+        android:id="@+id/txtEmprestimosDataDeDevolucao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_de_devolucao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmprestimosDataDeEmprestimo" />
 
     <Button
-        android:id="@+id/btnLivrosVoltar"
+        android:id="@+id/btnEmprestimosVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnVoltar"
         android:text="@string/voltar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnLivrosExcluir"
+        app:layout_constraintEnd_toStartOf="@+id/btnEmprestimosExcluir"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnLivrosExcluir"
+        android:id="@+id/btnEmprestimosExcluir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnExcluir"
@@ -27,17 +36,17 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnLivrosSalvar"
+        android:id="@+id/btnEmprestimosSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnSalvar"
         android:text="@string/salvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLivrosExcluir" />
+        app:layout_constraintStart_toEndOf="@+id/btnEmprestimosExcluir" />
 
     <TextView
-        android:id="@+id/txtLivrosUUID"
+        android:id="@+id/txtEmprestimosUUID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/uuid"
@@ -46,107 +55,129 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtTxtLivrosUUID"
+        android:id="@+id/edtTxtEmprestimosUUID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:enabled="false"
         android:hint="@string/uuid"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLivrosUUID"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmprestimosUUID" />
 
     <TextView
-        android:id="@+id/txtLivrosTitulo"
+        android:id="@+id/txtEmprestimosBibliotecario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titulo"
+        android:text="@string/cpf_bibliotecario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtLivrosUUID" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmprestimosUUID" />
 
     <EditText
-        android:id="@+id/edtTxtLivrosTitulo"
+        android:id="@+id/edtTxtEmprestimosBibliotecario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/titulo"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLivrosTitulo"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <TextView
-        android:id="@+id/txtLivrosEditora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/editora"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtLivrosTitulo" />
-
-    <EditText
-        android:id="@+id/edtTxtLivrosEditora"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/editora"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLivrosEditora"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ano_de_publicacao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtLivrosEditora" />
-
-    <EditText
-        android:id="@+id/edtTxtLivrosAnoPublicacao"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/ano_de_publicacao"
+        android:enabled="false"
+        android:hint="@string/cpf"
         android:inputType="number"
-        android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmprestimosBibliotecario" />
 
     <TextView
-        android:id="@+id/txtLivrosFoto"
+        android:id="@+id/txtEmprestimosAluno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registro_geral_academico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmprestimosBibliotecario" />
+
+    <EditText
+        android:id="@+id/edtTxtEmprestimosAluno"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/registro_geral_academico"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmprestimosAluno" />
+
+    <TextView
+        android:id="@+id/txtEmprestimosLivros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/livros"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmprestimosAluno" />
+
+    <Spinner
+        android:id="@+id/spinnerEmprestimosLivros"
+        android:layout_width="391dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmprestimosLivros" />
+
+    <TextView
+        android:id="@+id/txtEmprestimosDataDeEmprestimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/data_de_emprestimo"
+        android:text="@string/data_de_emprestimo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerEmprestimosLivros" />
+
+    <EditText
+        android:id="@+id/edtTxtEmprestimosDataDeEmprestimo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/data_de_emprestimo"
+        android:inputType="date"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmprestimosDataDeEmprestimo" />
+
+    <EditText
+        android:id="@+id/edtTxtEmprestimosDataDeDevolucao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/data_de_devolucao"
+        android:inputType="date"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmprestimosDataDeDevolucao" />
+
+    <TextView
+        android:id="@+id/txtEmprestimosFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/foto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtLivrosAnoPublicacao" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmprestimosDataDeDevolucao" />
 
     <ImageButton
-        android:id="@+id/imgBtnLivrosFoto"
+        android:id="@+id/imgBtnEmprestimosFoto"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:contentDescription="@string/foto"
+        android:src="@android:drawable/ic_menu_gallery"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLivrosFoto"
-        app:srcCompat="@android:drawable/ic_menu_gallery"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
+        app:layout_constraintTop_toBottomOf="@+id/txtEmprestimosFoto" />
 </androidx.constraintlayout.widget.ConstraintLayout>

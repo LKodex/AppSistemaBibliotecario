@@ -22,6 +22,6 @@ public class Aluno {
 
     @Ignore
     public String toString(){
-        return String.format("%s\t%s", rga, nome);
+        return String.format("RGA: %s\nNome: %s", rga, nome);
     }
 }

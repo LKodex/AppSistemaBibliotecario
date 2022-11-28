@@ -105,11 +105,11 @@ public class LibraryController {
         return database.livroDAO().getAll();
     }
 
-    private long getDateInMilliAfterToday(long days){
+    public static long getDateInMilliAfterToday(long days){
         final long MILLI_IN_A_SECOND = 1000;
         final long SECONDS_IN_A_MINUTE = 60;
         final long MINUTES_IN_AN_HOUR = 60;
         final long HOURS_IN_A_DAY = 24;
-        return MILLI_IN_A_SECOND * SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR * HOURS_IN_A_DAY * days;
+        return MILLI_IN_A_SECOND * SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR * HOURS_IN_A_DAY * days + System.currentTimeMillis();
     }
 }

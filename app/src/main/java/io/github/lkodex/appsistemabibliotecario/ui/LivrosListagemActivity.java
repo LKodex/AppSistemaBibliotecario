@@ -45,7 +45,7 @@ public class LivrosListagemActivity extends AppCompatActivity {
         binding.listViewLivrosListagem.setAdapter(adapter);
         binding.listViewLivrosListagem.setOnItemClickListener((adapterView, view, position, id) -> {
             Intent intent = new Intent(LivrosListagemActivity.this, LivrosActivity.class);
-            intent.putExtra("SELECTED_UUID", livros.get(position).uuid);
+            intent.putExtra("SELECTED_UUID", livros.get(position).uuid.toString());
             startActivity(intent);
         });
     }

@@ -27,7 +27,7 @@ public class EmprestimosListagemActivity extends AppCompatActivity {
         binding.btnBibliotecariosListagemVoltar.setOnClickListener(view -> finish());
 
         binding.btnBibliotecariosListagemNovo.setOnClickListener(view -> {
-            Intent intent = new Intent(EmprestimosListagemActivity.this, EmprestimoActivity.class);
+            Intent intent = new Intent(EmprestimosListagemActivity.this, EmprestimosActivity.class);
             startActivity(intent);
         });
     }
@@ -44,8 +44,8 @@ public class EmprestimosListagemActivity extends AppCompatActivity {
         );
         binding.listViewBibliotecariosListagem.setAdapter(adapter);
         binding.listViewBibliotecariosListagem.setOnItemClickListener((adapterView, view, position, id) -> {
-            Intent intent = new Intent(EmprestimosListagemActivity.this, EmprestimoActivity.class);
-            intent.putExtra("SELECTED_UUID", emprestimos.get(position).uuid);
+            Intent intent = new Intent(EmprestimosListagemActivity.this, EmprestimosActivity.class);
+            intent.putExtra("SELECTED_UUID", emprestimos.get(position).uuid.toString());
             startActivity(intent);
         });
     }

@@ -52,6 +52,6 @@ public class Emprestimo {
 
     @Ignore
     public String toString(){
-        return String.format("%s\t%s\t%s\t%s", livro, aluno, dataEmprestimo, bibliotecario);
+        return String.format("Livro UUID: %s\nAluno RGA: %s\nEmpréstimo em: %s\nBibliotecario: %s", livro, aluno, dataEmprestimo, bibliotecario);
     }
 }

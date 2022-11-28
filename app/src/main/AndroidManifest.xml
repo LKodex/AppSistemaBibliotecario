@@ -20,7 +20,7 @@
             android:name=".ui.DevolucoesListagemActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.EmprestimoActivity"
+            android:name=".ui.EmprestimosActivity"
             android:exported="false" />
         <activity
             android:name=".ui.EmprestimosListagemActivity"

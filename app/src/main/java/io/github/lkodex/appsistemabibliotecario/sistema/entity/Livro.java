@@ -20,6 +20,6 @@ public class Livro {
 
     @Ignore
     public String toString(){
-        return String.format("%s\t%s\t%d", titulo, editora, anoPublicacao);
+        return String.format("Titulo: %s\nEditora: %s\nAno: %d", titulo, editora, anoPublicacao);
     }
 }

@@ -24,4 +24,5 @@
     <string name="titulo">Titulo</string>
     <string name="editora">Editora</string>
     <string name="ano_de_publicacao">Ano de Publicação</string>
+    <string name="data_de_emprestimo">Data de Emprestimo</string>
 </resources>

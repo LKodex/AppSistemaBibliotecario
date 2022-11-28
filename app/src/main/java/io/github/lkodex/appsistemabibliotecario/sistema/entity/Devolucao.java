@@ -41,6 +41,6 @@ public class Devolucao {
 
     @Ignore
     public String toString(){
-        return String.format("%s\tDevolvido em: %s", emprestimo, new SimpleDateFormat("dd/MM/yyyy").format(dataDevolucao));
+        return String.format("UUID: %s\nDevolvido em: %s", emprestimo, new SimpleDateFormat("dd/MM/yyyy").format(dataDevolucao));
     }
 }

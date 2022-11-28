@@ -45,7 +45,7 @@ public class DevolucoesListagemActivity extends AppCompatActivity {
         binding.listViewDevolucoesListagem.setAdapter(adapter);
         binding.listViewDevolucoesListagem.setOnItemClickListener((adapterView, view, position, id) -> {
             Intent intent = new Intent(DevolucoesListagemActivity.this, DevolucoesActivity.class);
-            intent.putExtra("SELECTED_UUID", devolucoes.get(position).emprestimo);
+            intent.putExtra("SELECTED_UUID", devolucoes.get(position).emprestimo.toString());
             startActivity(intent);
         });
     }

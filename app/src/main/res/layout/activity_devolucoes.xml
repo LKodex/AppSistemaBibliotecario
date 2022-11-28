@@ -10,6 +10,7 @@
         android:id="@+id/btnDevolucoesVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="btnVoltar"
         android:text="@string/voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDevolucoesExcluir"
@@ -19,6 +20,7 @@
         android:id="@+id/btnDevolucoesExcluir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="btnExcluir"
         android:text="@string/excluir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +30,7 @@
         android:id="@+id/btnDevolucoesSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="btnSalvar"
         android:text="@string/salvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,19 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edtTxtDevolucoesUUID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/uuid"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDevolucoesUUID" />
-
     <TextView
         android:id="@+id/txtDevolucoesBibliotecario"
         android:layout_width="wrap_content"
@@ -62,7 +52,7 @@
         android:text="@string/cpf_bibliotecario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtDevolucoesUUID" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDevolucoesEmprestimosAbertos" />
 
     <EditText
         android:id="@+id/edtTxtDevolucoesBibliotecario"
@@ -119,4 +109,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDevolucoesFoto"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <Spinner
+        android:id="@+id/spinnerDevolucoesEmprestimosAbertos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDevolucoesUUID" />
 </androidx.constraintlayout.widget.ConstraintLayout>

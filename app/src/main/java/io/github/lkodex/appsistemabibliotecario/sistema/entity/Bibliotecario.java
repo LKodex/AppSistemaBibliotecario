@@ -22,6 +22,6 @@ public class Bibliotecario {
 
     @Ignore
     public String toString(){
-        return String.format("%s\n%s", cpf, nome);
+        return String.format("CPF: %s\nNome: %s", cpf, nome);
     }
 }
